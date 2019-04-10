@@ -1,0 +1,4 @@
+driver.class.name=java.sql.DriverManager
+db.url= jdbc:oracle:thin:@orcl.ctjvvkfbst7n.us-east-2.rds.amazonaws.com:1521:ORCL
+db.username=padilla157
+db.password=Phiota2019
