@@ -1,7 +1,5 @@
 package com.revature.BankingApp;
 
-
-import java.lang.System.Logger;
 import java.util.List;
 import java.util.Scanner;
 

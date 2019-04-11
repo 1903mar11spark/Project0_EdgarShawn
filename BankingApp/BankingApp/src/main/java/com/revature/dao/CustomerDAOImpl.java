@@ -56,27 +56,30 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public Customer getCustomerByCredentials(String username, String password) {
-		Account account = null;
+		
+		Customer customer = new Customer();
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
-			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, BALANCE FROM ACCOUNTS WHERE USERNAME = ? AND"
-					+ " PASS_word = ?";
+			String sql = "SELECT * FROM CUSTOMERS WHERE USERNAME = ? AND"
+					+ " PASS_WORD = ?";
 			
 			PreparedStatement pstmt  = con.prepareStatement(sql);
 			
 			//Set value of the first '?' to the value of 'id' 
 			pstmt.setString(1, username);
-			pstmt.setString(2,password);
+			pstmt.setString(2, password);
 			
 			//Result the query and retrieve a ResultSet
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int accountId = rs.getInt("ACCOUNT_ID");
-				int accountNum = rs.getInt("ACCOUNT_NUMBER");
-				double balance = rs.getDouble("BALANCE");
-				account = new Account(accountId, accountNum, balance);
+				customer.setId(rs.getInt("USER_ID"));
+				customer.setFirstName(rs.getString("FIRSTNAME"));
+				customer.setLastName(rs.getString("LASTNAME"));
+				customer.setUserName(rs.getString("USERNAME"));
+				customer.setPassWord(rs.getString("LASTNAME"));
+				
 			}
 		} catch (SQLException e) {
 			
@@ -84,8 +87,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		}
 
 		
-		return account;
-		return null;
+		return customer;
 	}
 
 	
