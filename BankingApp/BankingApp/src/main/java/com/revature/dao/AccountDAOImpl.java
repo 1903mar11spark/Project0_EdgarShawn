@@ -12,6 +12,7 @@ import com.revature.beans.Account;
 import com.revature.util.ConnectionUtil;
 
 public class AccountDAOImpl implements AccountDAO{
+	
 
 	public List<Account> getAccounts() {
 		List<Account> acc = new ArrayList<Account>();
@@ -25,9 +26,8 @@ public class AccountDAOImpl implements AccountDAO{
 			while (rs.next()) {
 				int id = rs.getInt("ACCOUNT_ID");
 				int accountNum = rs.getInt("ACCOUNT_NUMBER");
-				//int userId = rs.getInt("USER_ID");
 				double balance = rs.getDouble("BALANCE");
-				acc.add(new Account(id, accountNum,balance));
+				acc.add(new Account(id, accountNum, balance));
 			}
 		} catch (SQLException e) {
 			
@@ -36,13 +36,13 @@ public class AccountDAOImpl implements AccountDAO{
 		return acc;
 	}
 
-	public Account getAccountById(int id) 
+	public Account getAccountByCustId(int id) 
 	{
-		Account account = new Account();
+		Account account = null;
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
-			String sql = "SELECT * FROM ACCOUNTS WHERE ACCOUNT_ID = ?";
+			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, BALANCE FROM ACCOUNTS WHERE USER_ID = ?";
 			
 			PreparedStatement pstmt  = con.prepareStatement(sql);
 			
@@ -50,28 +50,49 @@ public class AccountDAOImpl implements AccountDAO{
 			pstmt.setInt(1, id);
 			
 			//Result the query and retrieve a ResultSet
-			ResultSet rs = pstmt.executeQuery(sql);
+			ResultSet rs = pstmt.executeQuery();
 			
-			while (rs.next()) {
-				account.setId(rs.getInt(1));
-				//account.setAccountNum(rs.getInt("ACCOUNT_NUMBER"));
-				//account.setBalance(rs.getDouble("BALANCE"));
+			if(rs.next()) {
+				int accountId = rs.getInt("ACCOUNT_ID");
+				int accountNum = rs.getInt("ACCOUNT_NUMBER");
+				double balance = rs.getDouble("BALANCE");
+				account = new Account(accountId, accountNum, balance);
 			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
-//		if(account.getId() == 0 )
-//			return null;
+
 		
 		return account;
 	}
 	
 
-	public void createAccount(Account account) 
-	{
+	public void createAccount(Account account) {
+	
+		int newAcc = 0;
 		
-		
+		try(Connection con = ConnectionUtil.getConnection())
+		{
+			String sql = "INSERT INTO ACCOUNTS(ACCOUNT_NUMBER,USER_ID, BALANCE) VALUES(?,66,?)";
+			
+			PreparedStatement pstmt  = con.prepareStatement(sql);
+			 
+			pstmt.setInt(1, account.getAccountNum());
+			pstmt.setDouble(2, account.getBalance());
+			newAcc = pstmt.executeUpdate();
+			
+			//Result the query and retrieve a ResultSet
+			//ResultSet rs = pstmt.executeQuery(sql);
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+
+		System.out.println(newAcc);
+		//return newAcc;
 	}
 
 	public void updateAccount(Account account) 
@@ -80,9 +101,16 @@ public class AccountDAOImpl implements AccountDAO{
 		
 	}
 
-	public void deleteAccount(Account account) 
-	{
 
+	@Override
+	public void deposit(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void withdraw(int id) {
+		// TODO Auto-generated method stub
 		
 	}
 	

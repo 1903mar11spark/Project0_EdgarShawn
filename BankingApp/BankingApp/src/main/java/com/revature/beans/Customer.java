@@ -1,6 +1,13 @@
 package com.revature.beans;
 
-public class Customer {
+public class Customer 
+{
+	
+	    
+	    public Customer() 
+	    {
+			////stuff
+		}
 
 		public Customer(int id, String firstName, String lastName, String userName, String passWord) {
 		super();
@@ -11,11 +18,14 @@ public class Customer {
 		this.passWord = passWord;
 	}
 		
+		
+
 		private int id;
 		private String firstName;
 		private String lastName;
 		private String userName;
 		private String passWord;
+		private String role;
 		
 		public int getId() {return id;}
 		public void setId(int id) {this.id = id;}
@@ -32,11 +42,19 @@ public class Customer {
 		public String getPassWord() {return passWord;}
 		public void setPassWord(String passWord) {this.passWord = passWord;}
 		
+		public Object getRole() {return role;}
+		public void setRole(String role) {this.role = role;}
+		
 		@Override
 		public String toString() {
 			return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
 					+ userName + ", passWord=" + passWord + "]";
 		}
+
+		
+
+		
+		
 		
 		
 		
