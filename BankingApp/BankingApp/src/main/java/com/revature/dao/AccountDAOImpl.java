@@ -37,7 +37,7 @@ public class AccountDAOImpl implements AccountDAO{
 
 	public Account getAccountByCustId(int id) 
 	{
-		Account account = new Account();
+		Account account = null;
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
@@ -49,30 +49,50 @@ public class AccountDAOImpl implements AccountDAO{
 			//pstmt.setInt(1, id);
 			
 			//Result the query and retrieve a ResultSet
-			//System.out.println(sql);
-			
 			ResultSet rs = pstmt.executeQuery(sql);
 			
-			while (rs.next()) {
-				int uid = rs.getInt("ACCOUNT_ID");
+			if(rs.next()) {
+				int accountId = rs.getInt("ACCOUNT_ID");
 				int accountNum = rs.getInt("ACCOUNT_NUMBER");
 				double balance = rs.getDouble("BALANCE");
-				account = new Account(id, accountNum, balance);
+				account = new Account(accountId, accountNum, balance);
 			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
 
-		
+		System.out.println(account);
 		return account;
 	}
 	
 
-	public void createAccount(Account account) 
-	{
+	public void createAccount(Account account) {
+	
+		int newAcc = 0;
 		
-		
+		try(Connection con = ConnectionUtil.getConnection())
+		{
+			String sql = "INSERT INTO ACCOUNTS(ACCOUNT_NUMBER, BALANCE) VALUES(?,?)";
+			
+			PreparedStatement pstmt  = con.prepareStatement(sql);
+			
+			//Set value of the first '?' to the value of 'id' 
+			pstmt.setInt(1, account.getAccountNum());
+			pstmt.setDouble(2, account.getBalance());
+			newAcc = pstmt.executeUpdate();
+			
+			//Result the query and retrieve a ResultSet
+			//ResultSet rs = pstmt.executeQuery(sql);
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+
+		System.out.println(newAcc);
+		//return newAcc;
 	}
 
 	public void updateAccount(Account account) 

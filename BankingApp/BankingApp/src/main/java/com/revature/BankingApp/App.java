@@ -18,7 +18,7 @@ public class App
         AccountDAO acc = new AccountDAOImpl();
         List<Account> accountList = acc.getAccounts();
         System.out.println(acc.getAccountByCustId(41));
-        
+       // System.out.println(acc.createAccount(null););
         for(Account a: accountList) {
         	//System.out.println(a);
         	
