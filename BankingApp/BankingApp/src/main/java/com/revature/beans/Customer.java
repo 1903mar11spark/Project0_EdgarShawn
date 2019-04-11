@@ -4,7 +4,13 @@ public class Customer
 {
 	
 	    
-	    public Customer() 
+	    public Customer(String userName, String passWord) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+	}
+
+		public Customer() 
 	    {
 			////stuff
 		}
