@@ -12,6 +12,7 @@ import com.revature.beans.Account;
 import com.revature.util.ConnectionUtil;
 
 public class AccountDAOImpl implements AccountDAO{
+	
 
 	public List<Account> getAccounts() {
 		List<Account> acc = new ArrayList<Account>();
@@ -41,15 +42,15 @@ public class AccountDAOImpl implements AccountDAO{
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
-			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, BALANCE FROM ACCOUNTS WHERE USER_ID = 41";
+			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, BALANCE FROM ACCOUNTS WHERE USER_ID = ?";
 			
 			PreparedStatement pstmt  = con.prepareStatement(sql);
 			
 			//Set value of the first '?' to the value of 'id' 
-			//pstmt.setInt(1, id);
+			pstmt.setInt(1, id);
 			
 			//Result the query and retrieve a ResultSet
-			ResultSet rs = pstmt.executeQuery(sql);
+			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				int accountId = rs.getInt("ACCOUNT_ID");
@@ -62,7 +63,7 @@ public class AccountDAOImpl implements AccountDAO{
 			e.printStackTrace();
 		}
 
-		System.out.println(account);
+		
 		return account;
 	}
 	
@@ -73,11 +74,10 @@ public class AccountDAOImpl implements AccountDAO{
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
-			String sql = "INSERT INTO ACCOUNTS(ACCOUNT_NUMBER, BALANCE) VALUES(?,?)";
+			String sql = "INSERT INTO ACCOUNTS(ACCOUNT_NUMBER,USER_ID, BALANCE) VALUES(?,66,?)";
 			
 			PreparedStatement pstmt  = con.prepareStatement(sql);
-			
-			//Set value of the first '?' to the value of 'id' 
+			 
 			pstmt.setInt(1, account.getAccountNum());
 			pstmt.setDouble(2, account.getBalance());
 			newAcc = pstmt.executeUpdate();
@@ -101,9 +101,16 @@ public class AccountDAOImpl implements AccountDAO{
 		
 	}
 
-	public void deleteAccount(Account account) 
-	{
 
+	@Override
+	public void deposit(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void withdraw(int id) {
+		// TODO Auto-generated method stub
 		
 	}
 	
