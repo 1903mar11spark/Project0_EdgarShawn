@@ -48,7 +48,7 @@ public class Customer
 		@Override
 		public String toString() {
 			return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
-					+ userName + ", passWord=" + passWord + "]";
+					+ userName + ", passWord=" + passWord + ", role=" + role + "]";
 		}
 
 		
