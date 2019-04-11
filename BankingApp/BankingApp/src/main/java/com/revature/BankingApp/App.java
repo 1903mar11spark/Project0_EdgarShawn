@@ -12,15 +12,15 @@ public class App
 {
     public static void main( String[] args ){
     	
-//    	Scanner scanner = new Scanner(System.in);
-//    	String input = scanner.next();
+    	//Scanner scanner = new Scanner(System.in);
+    	//String input = scanner.next();
     	
         AccountDAO acc = new AccountDAOImpl();
         List<Account> accountList = acc.getAccounts();
-        System.out.println(acc.getAccountById(41));
+        System.out.println(acc.getAccountByCustId(41));
         
         for(Account a: accountList) {
-        	System.out.println(a);
+        	//System.out.println(a);
         	
         }
        

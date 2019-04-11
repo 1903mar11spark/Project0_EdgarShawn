@@ -25,9 +25,8 @@ public class AccountDAOImpl implements AccountDAO{
 			while (rs.next()) {
 				int id = rs.getInt("ACCOUNT_ID");
 				int accountNum = rs.getInt("ACCOUNT_NUMBER");
-				//int userId = rs.getInt("USER_ID");
 				double balance = rs.getDouble("BALANCE");
-				acc.add(new Account(id, accountNum,balance));
+				acc.add(new Account(id, accountNum, balance));
 			}
 		} catch (SQLException e) {
 			
@@ -36,33 +35,35 @@ public class AccountDAOImpl implements AccountDAO{
 		return acc;
 	}
 
-	public Account getAccountById(int id) 
+	public Account getAccountByCustId(int id) 
 	{
 		Account account = new Account();
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
-			String sql = "SELECT * FROM ACCOUNTS WHERE ACCOUNT_ID = ?";
+			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, BALANCE FROM ACCOUNTS WHERE USER_ID = 41";
 			
 			PreparedStatement pstmt  = con.prepareStatement(sql);
 			
 			//Set value of the first '?' to the value of 'id' 
-			pstmt.setInt(1, id);
+			//pstmt.setInt(1, id);
 			
 			//Result the query and retrieve a ResultSet
+			//System.out.println(sql);
+			
 			ResultSet rs = pstmt.executeQuery(sql);
 			
 			while (rs.next()) {
-				account.setId(rs.getInt(1));
-				//account.setAccountNum(rs.getInt("ACCOUNT_NUMBER"));
-				//account.setBalance(rs.getDouble("BALANCE"));
+				int uid = rs.getInt("ACCOUNT_ID");
+				int accountNum = rs.getInt("ACCOUNT_NUMBER");
+				double balance = rs.getDouble("BALANCE");
+				account = new Account(id, accountNum, balance);
 			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
-//		if(account.getId() == 0 )
-//			return null;
+
 		
 		return account;
 	}
