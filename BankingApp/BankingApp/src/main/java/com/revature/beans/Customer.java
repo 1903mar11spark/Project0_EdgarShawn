@@ -4,7 +4,13 @@ public class Customer
 {
 	
 	    
-	    public Customer() 
+	    public Customer(String userName, String passWord) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+	}
+
+		public Customer() 
 	    {
 			////stuff
 		}
@@ -48,7 +54,7 @@ public class Customer
 		@Override
 		public String toString() {
 			return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
-					+ userName + ", passWord=" + passWord + "]";
+					+ userName + ", passWord=" + passWord + ", role=" + role + "]";
 		}
 
 		
