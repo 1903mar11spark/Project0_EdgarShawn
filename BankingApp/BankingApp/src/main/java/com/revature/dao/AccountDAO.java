@@ -3,6 +3,7 @@ package com.revature.dao;
 import java.util.List;
 
 import com.revature.beans.Account;
+import com.revature.beans.Customer;
 
 public interface AccountDAO {
 
@@ -11,5 +12,8 @@ public interface AccountDAO {
 	public void createAccount(Account account);
 	public void updateAccount(Account account);
 	public void deleteAccount(Account account);
+	
+	
+	public Customer add(Customer newCustomer);
 	
 }

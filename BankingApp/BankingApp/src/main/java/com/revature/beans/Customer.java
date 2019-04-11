@@ -1,6 +1,14 @@
 package com.revature.beans;
 
-public class Customer {
+public class Customer 
+{
+	
+	    private Customer customer = new Customer();
+	    
+	    public Customer() 
+	    {
+			////stuff
+		}
 
 		public Customer(int id, String firstName, String lastName, String userName, String passWord) {
 		super();
@@ -11,6 +19,8 @@ public class Customer {
 		this.passWord = passWord;
 	}
 		
+		
+
 		private int id;
 		private String firstName;
 		private String lastName;
@@ -37,6 +47,21 @@ public class Customer {
 			return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
 					+ userName + ", passWord=" + passWord + "]";
 		}
+		public Customer add(Customer newCustomer) 
+		{
+			// Verify that there are no empty fields
+			if (newCustomer.getUserName().equals("") 
+					|| newCustomer.getPassWord().equals("") 
+					|| newCustomer.getFirstName().equals("")
+					|| newCustomer.getLastName().equals("")) 
+			{
+			return customer.add(newCustomer);
+			}
+		return newCustomer;
+		}
+
+		
+		
 		
 		
 		
