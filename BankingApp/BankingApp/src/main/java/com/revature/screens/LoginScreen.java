@@ -21,10 +21,10 @@ public class LoginScreen implements Screen {
 		try {
 			
 			
-		System.out.println("Please enter your Username and Password:");
-		System.out.println("Provide Username: ");
+		System.out.println("***Please enter your Username and Password***");
+		System.out.println("--Provide Username: ");
 		userName = br.readLine();
-		System.out.println("Enter Password");
+		System.out.println("--Enter Password");
 		passWord = br.readLine();
 		
 		
@@ -34,8 +34,9 @@ public class LoginScreen implements Screen {
 		//we should navigate the client to their dashboard
 		if(loggedCustomer != null) {
 			
-			System.out.println("Loading Function Screen...");
-			System.out.println("\n-------------------------------------");
+			System.out.println("     Loading Function Screen...");
+			
+			
 			
 			// Change the currentCustomer of AppState to the Customer object 
 			//that is returned from the login process

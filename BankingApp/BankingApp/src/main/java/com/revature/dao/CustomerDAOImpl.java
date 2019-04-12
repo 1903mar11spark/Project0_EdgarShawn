@@ -54,6 +54,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 					customer1.setLastName(rs.getString("LASTNAME"));
 					customer1.setUserName(rs.getString("USERNAME"));
 					customer1.setPassWord(rs.getString("PASS_WORD"));
+					
 				}
 				
 				//con.commit();
