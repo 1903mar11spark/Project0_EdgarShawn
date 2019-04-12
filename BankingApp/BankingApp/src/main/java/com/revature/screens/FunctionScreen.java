@@ -3,9 +3,7 @@ package com.revature.screens;
 import java.io.BufferedReader;
 
 import com.revature.beans.Account;
-import com.revature.beans.Customer;
 import com.revature.dao.AccountDAOImpl;
-import com.revature.dao.CustomerDAOImpl;
 import com.revature.util.AppState;
 
 public class FunctionScreen implements Screen 
@@ -16,15 +14,14 @@ public class FunctionScreen implements Screen
 	{
 		
 		String customerSelection;
-		
-		System.out.println("Welcome " + AppState.getCurrentCustomer().getFirstName() + ", how can we assist you today? :)...");
+		System.out.println("  (^w^) Welcome " + AppState.getCurrentCustomer().getFirstName() + ", how can we assist you today?");
 		
 		// Display the customer display 
-		System.out.println("\n\n");
+		
 		System.out.println("1) View account balances");
 		System.out.println("2) Make a deposit");
 		System.out.println("3) Make a withdrawal");
-		System.out.println("5) Sign Out");
+		System.out.println("4) Sign Out");
 		
 		
 		try {
@@ -41,8 +38,6 @@ public class FunctionScreen implements Screen
 				Account acc = accountDAO.getAccountByCustId(AppState.getCurrentCustomer().getId());
 				System.out.println("Getting balance for you " + AppState.getCurrentCustomer().getFirstName() + "...");
 				System.out.println("Balance is:  $" + acc.getBalance() + " dollars");
-				System.out.println("                                   ");
-				System.out.println("                                   ");
 				System.out.println("  Returning to Function Screen...   ");
 				this.start(br);
 			case "2":
@@ -55,7 +50,7 @@ public class FunctionScreen implements Screen
 				//return new MakeAWithdrawalScreen().start(br);
 				break;
 			case "4":
-				System.out.println("[LOG] - " + AppState.getCurrentCustomer().getUserName() + " signing out...");
+				System.out.println("Goodbye " + AppState.getCurrentCustomer().getFirstName() + "! signing you out...");
 				//setting customer back to null to "log them out"
 				AppState.setCurrentCustomer(null);
 				return new HomeScreen().start(br);
