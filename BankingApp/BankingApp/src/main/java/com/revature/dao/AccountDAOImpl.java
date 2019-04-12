@@ -110,6 +110,7 @@ public class AccountDAOImpl implements AccountDAO{
 			pstmt.setDouble(1, account.getBalance());
 			pstmt.setInt(2, AppState.getCurrentCustomer().getId());
 			
+			pstmt.executeUpdate();
 			//Result the query and retrieve a ResultSet
 			//ResultSet rs = pstmt.executeQuery();
 			
