@@ -44,7 +44,7 @@ public class RegisterScreen implements Screen
 			//was successful, and navigate to theFunction screen
 			if(AppState.getCurrentCustomer() != null) 
 			{
-				System.out.println("[LOG] - Welcome new customer! Logging in and navigating to FunctionScreen...");
+				System.out.println("Welcome ! Logging in and navigating to FunctionScreen...");
 				return new FunctionScreen().start(br);
 			} 
 			

@@ -47,8 +47,7 @@ public class FunctionScreen implements Screen
 			case "3":
 				// Navigate to the MakeAWithDrawalScreen
 				System.out.println("Make a withdrawal option selected.");
-				//return new MakeAWithdrawalScreen().start(br);
-				break;
+				return new WithdrawScreen().start(br);
 			case "4":
 				System.out.println("Goodbye " + AppState.getCurrentCustomer().getFirstName() + "! signing you out...");
 				//setting customer back to null to "log them out"

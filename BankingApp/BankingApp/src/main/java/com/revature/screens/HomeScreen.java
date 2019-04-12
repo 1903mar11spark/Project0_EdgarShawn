@@ -22,7 +22,7 @@ public class HomeScreen implements Screen {
 			System.out.println("    |              Welcome to             |    ");
 			System.out.println("    |        Basic Bank of Commerce       |    ");
 			System.out.println("    |------                        -------|    ");
-			System.out.println("    |--------       ------        --------|    ");
+			System.out.println("    |--------        ------       --------|    ");
 			System.out.println("    |    --------            --------     |    ");
 			System.out.println("    |--        ----------------         --|    ");
 			System.out.println("    |               ------                |    ");
