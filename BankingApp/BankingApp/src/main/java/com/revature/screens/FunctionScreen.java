@@ -2,6 +2,10 @@ package com.revature.screens;
 
 import java.io.BufferedReader;
 
+import com.revature.beans.Account;
+import com.revature.beans.Customer;
+import com.revature.dao.AccountDAOImpl;
+import com.revature.dao.CustomerDAOImpl;
 import com.revature.util.AppState;
 
 public class FunctionScreen implements Screen 
@@ -11,47 +15,46 @@ public class FunctionScreen implements Screen
 	public Screen start(BufferedReader br) 
 	{
 		
-		String clientSelection;
+		String customerSelection;
 		
 		System.out.println("Welcome " + AppState.getCurrentCustomer().getFirstName() + ", how can we assist you today? :)...");
 		
 		// Display the customer display 
-		System.out.println("\n\n+---------------------------------+\n");
+		System.out.println("\n\n");
 		System.out.println("1) View account balances");
 		System.out.println("2) Make a deposit");
 		System.out.println("3) Make a withdrawal");
-		System.out.println("4) Open new account");
 		System.out.println("5) Sign Out");
+		
 		
 		try {
 			
 			// Get the client's menu selection
 			System.out.print("Selection: ");
-			clientSelection = br.readLine();
+			customerSelection = br.readLine();
 			
 			// Navigate to the appropriate screen based on the client's selection
-			switch(clientSelection) {
+			switch(customerSelection) {
 			case "1":
-				// Navigate to the ViewAccountBalancesScreen
-				System.out.println("Viewing balance...");
-				//return new ViewAccountBalancesScreen().start(br);
-				break;
+				//Get balance
+				AccountDAOImpl accountDAO = new AccountDAOImpl();
+				Account acc = accountDAO.getAccountByCustId(AppState.getCurrentCustomer().getId());
+				System.out.println("Getting balance for you " + AppState.getCurrentCustomer().getFirstName() + "...");
+				System.out.println("Balance is:  $" + acc.getBalance() + " dollars");
+				System.out.println("                                   ");
+				System.out.println("                                   ");
+				System.out.println("  Returning to Function Screen...   ");
+				this.start(br);
 			case "2":
-				// Navigate to the MakeADepositScreen
+				// Make a deposit
 				System.out.println("Make a deposit option selected.");
-				//return new MakeADepositScreen().start(br);
-				break;
+				return new DepositScreen().start(br);
 			case "3":
 				// Navigate to the MakeAWithDrawalScreen
 				System.out.println("Make a withdrawal option selected.");
 				//return new MakeAWithdrawalScreen().start(br);
 				break;
 			case "4":
-				// Navigate to the OpenNewAccountScreen
-				System.out.println("Open new account option selected.");
-				//return new OpenNewAccountScreen().start(br);
-				break;
-			case "5":
 				System.out.println("[LOG] - " + AppState.getCurrentCustomer().getUserName() + " signing out...");
 				//setting customer back to null to "log them out"
 				AppState.setCurrentCustomer(null);
