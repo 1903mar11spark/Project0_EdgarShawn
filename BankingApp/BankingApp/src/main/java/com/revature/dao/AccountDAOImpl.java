@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.beans.Account;
+import com.revature.util.AppState;
 import com.revature.util.ConnectionUtil;
 
 public class AccountDAOImpl implements AccountDAO{
@@ -95,9 +96,36 @@ public class AccountDAOImpl implements AccountDAO{
 		//return newAcc;
 	}
 
-	public void updateAccount(Account account) 
+	public Account updateAccount(Account account) 
 	{
+		//Account account1 = new Account();
+		
+		try(Connection con = ConnectionUtil.getConnection())
+		{
+			String sql = "UPDATE ACCOUNTS SET BALANCE = ? WHERE ACCOUNT_ID = ?";
+			
+			PreparedStatement pstmt  = con.prepareStatement(sql);
+			
+			//Set value of the first '?' to the value of 'id' 
+			pstmt.setDouble(1, account.getBalance());
+			pstmt.setInt(2, AppState.getCurrentCustomer().getId());
+			
+			//Result the query and retrieve a ResultSet
+			//ResultSet rs = pstmt.executeQuery();
+			
+//			if(rs.next()) {
+//				int accountId = rs.getInt("ACCOUNT_ID");
+//				int accountNum = rs.getInt("ACCOUNT_NUMBER");
+//				double newBalance = rs.getDouble("BALANCE");
+//				account1 = new Account(accountId, accountNum, newBalance);
+//			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 
+		
+		return null;
 		
 	}
 
