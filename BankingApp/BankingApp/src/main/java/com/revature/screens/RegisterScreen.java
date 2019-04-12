@@ -3,12 +3,15 @@ package com.revature.screens;
 import java.io.BufferedReader;
 
 import com.revature.beans.Customer;
+import com.revature.dao.CustomerDAOImpl;
 import com.revature.util.AppState;
 
 public class RegisterScreen implements Screen 
 {
 	public Screen start(BufferedReader br) 
 	{
+		CustomerDAOImpl customerDAOImp = new CustomerDAOImpl();
+		
 		// Method-scoped references to hold registration input
 		String userName;
 		String passWord;
@@ -30,7 +33,9 @@ public class RegisterScreen implements Screen
 			lastName = br.readLine();
 			
 			// Create a customer object using the input provided
-			Customer newCustomer = new Customer(0, firstName, lastName, userName, passWord);
+//			Customer newCustomer = new Customer(firstName, lastName, userName, passWord);
+			Customer newCustomer = customerDAOImp.createCustomer(firstName, lastName, userName, passWord);
+			
 			
 			// Attempt to register customer and update the currentClient field of AppState to the return value of .add
 			AppState.setCurrentCustomer(newCustomer);

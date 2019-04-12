@@ -25,10 +25,48 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public Customer createCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer createCustomer(String firstName, String lastName, String userName, String passWord ) {
+		Customer customer1  = new Customer();
+		
+		ConnectionUtil.getInstance();
+		try(Connection con = ConnectionUtil.getConnection())
+		{
+			String sql = "INSERT INTO CUSTOMER VALUES(0, ?, ?, ?, ?)";
+			String keys[] = new String[1];
+			keys[0] = "USER_ID";
+			
+			PreparedStatement pstmt  = con.prepareStatement(sql);
+			
+			pstmt.setString(1, firstName);
+			pstmt.setString(2, lastName);
+			pstmt.setString(3, userName);
+			pstmt.setString(4, passWord);
+			
+			int rowInserts = pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			
+			if(rowInserts != 0) 
+			{
+				while(rs.next()) 
+				{
+					customer1.setId(rs.getInt(1));
+					customer1.setFirstName(rs.getString("FIRSTNAME"));
+					customer1.setLastName(rs.getString("LASTNAME"));
+					customer1.setUserName(rs.getString("USERNAME"));
+					customer1.setPassWord(rs.getString("PASS_WORD"));
+				}
+				
+				//con.commit();
+			}
+			
+		} 
+		catch (SQLException e) 
+		{	
+			e.printStackTrace();
+		}
+		return customer1;
 	}
+	
 
 	@Override
 	public Customer updateCustomer(Customer customer) {
@@ -78,7 +116,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 				customer.setFirstName(rs.getString("FIRSTNAME"));
 				customer.setLastName(rs.getString("LASTNAME"));
 				customer.setUserName(rs.getString("USERNAME"));
-				customer.setPassWord(rs.getString("LASTNAME"));
+				customer.setPassWord(rs.getString("PASS_WORD"));
 				
 			}
 		} catch (SQLException e) {
