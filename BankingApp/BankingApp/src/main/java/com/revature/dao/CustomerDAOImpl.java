@@ -61,7 +61,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		try(Connection con = ConnectionUtil.getConnection())
 		{
-			String sql = "SELECT * FROM CUSTOMERS WHERE USERNAME = ? AND"
+			String sql = "SELECT * FROM CUSTOMER WHERE USERNAME = ? AND"
 					+ " PASS_WORD = ?";
 			
 			PreparedStatement pstmt  = con.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 			e.printStackTrace();
 		}
 
-		
+		//System.out.println(customer);
 		return customer;
 	}
 
