@@ -35,6 +35,7 @@ public class LoginScreen implements Screen {
 		if(loggedCustomer != null) {
 			
 			System.out.println("Loading Function Screen...");
+			System.out.println("\n-------------------------------------");
 			
 			// Change the currentCustomer of AppState to the Customer object 
 			//that is returned from the login process
