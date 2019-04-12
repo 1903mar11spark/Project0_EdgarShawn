@@ -2,6 +2,7 @@ package com.revature.screens;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.function.Function;
 
 import com.revature.beans.Account;
 import com.revature.dao.AccountDAOImpl;
@@ -34,8 +35,13 @@ public class DepositScreen implements Screen {
 			AccountDAOImpl accountDAO = new AccountDAOImpl();
 			Account acc = accountDAO.getAccountByCustId(AppState.getCurrentCustomer().getId());
 			acc.setBalance(acc.getBalance() + amount);
-			System.out.println("New Balance is:  $" + (acc.getBalance() + amount) + " dollars");
-			//AccountDAOImpl newAccount = AccountDAOImpl
+			System.out.println("New Balance is: " + (double)acc.getBalance() + " dollars");
+			accountDAO.updateAccount(acc);
+			System.out.println("\n");
+			System.out.println("    Deposit executed!");
+			System.out.println("    Returning to FunctionScreen..");
+			System.out.println("\n");
+			return new FunctionScreen().start(br);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
