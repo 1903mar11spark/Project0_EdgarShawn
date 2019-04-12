@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 
 import com.revature.util.AppState;
 
-public class HomeScreen 
-{
+public class HomeScreen implements Screen {
 
 
 	public Screen start(BufferedReader br) 
@@ -29,9 +28,9 @@ public class HomeScreen
 			System.out.println("|               ------                |");
 			System.out.println("+   --   Please select an option: --  +\n");
 			
-			System.out.println("			A) Login");
-			System.out.println("			B) Create Account");
-			System.out.println("			C) Exit");
+			System.out.println("A) Login");
+			System.out.println("B) Create Account");
+			System.out.println("C) Exit");
 			
 			try 
 			{
@@ -59,7 +58,7 @@ public class HomeScreen
 				
 			} catch (Exception e) 
 			{
-				System.out.println("[ERROR] - Error reading input from console");
+				System.out.println("Error!");
 				AppState.setAppRunning(false);
 				return null;
 			}

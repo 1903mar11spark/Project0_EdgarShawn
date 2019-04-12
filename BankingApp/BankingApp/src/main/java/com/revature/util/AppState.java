@@ -6,7 +6,6 @@ public class AppState {
 
     private static Customer currentCustomer;
     private static boolean appRunning;
-    private static boolean restartingApp;
     
     private AppState() {
         super();
@@ -28,6 +27,4 @@ public class AppState {
         AppState.appRunning = appRunning;
     }
 
-    
-    
 }

@@ -13,7 +13,7 @@ public class FunctionScreen implements Screen
 		
 		String clientSelection;
 		
-		System.out.println("[LOG] - Rendering " + AppState.getCurrentCustomer().getFirstName() + "'s Dashboard...");
+		System.out.println("Welcome " + AppState.getCurrentCustomer().getFirstName() + ", how can we assist you today? :)...");
 		
 		// Display the customer display 
 		System.out.println("\n\n+---------------------------------+\n");
@@ -33,20 +33,24 @@ public class FunctionScreen implements Screen
 			switch(clientSelection) {
 			case "1":
 				// Navigate to the ViewAccountBalancesScreen
-				System.out.println("[TEST] - View account balances option selected.");
+				System.out.println("Viewing balance...");
 				//return new ViewAccountBalancesScreen().start(br);
+				break;
 			case "2":
 				// Navigate to the MakeADepositScreen
-				System.out.println("[TEST] - Make a deposit option selected.");
+				System.out.println("Make a deposit option selected.");
 				//return new MakeADepositScreen().start(br);
+				break;
 			case "3":
 				// Navigate to the MakeAWithDrawalScreen
-				System.out.println("[TEST] - Make a withdrawal option selected.");
+				System.out.println("Make a withdrawal option selected.");
 				//return new MakeAWithdrawalScreen().start(br);
+				break;
 			case "4":
 				// Navigate to the OpenNewAccountScreen
-				System.out.println("[TEST] - Open new account option selected.");
+				System.out.println("Open new account option selected.");
 				//return new OpenNewAccountScreen().start(br);
+				break;
 			case "5":
 				System.out.println("[LOG] - " + AppState.getCurrentCustomer().getUserName() + " signing out...");
 				//setting customer back to null to "log them out"
@@ -60,7 +64,7 @@ public class FunctionScreen implements Screen
 		} catch(Exception e) 
 		{
 			// If any exceptions are thrown restart the application
-			System.out.println("[ERROR] - Error reading input from console");
+			System.out.println("Error");
 			AppState.setAppRunning(false);
 			return null;
 		}

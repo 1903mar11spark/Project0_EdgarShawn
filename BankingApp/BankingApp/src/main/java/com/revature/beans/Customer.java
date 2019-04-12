@@ -4,7 +4,15 @@ public class Customer
 {
 	
 	    
-	    public Customer(String userName, String passWord) {
+	    public Customer(String firstName, String lastName, String userName, String passWord) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.passWord = passWord;
+	}
+
+		public Customer(String userName, String passWord) {
 		super();
 		this.userName = userName;
 		this.passWord = passWord;

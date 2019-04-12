@@ -10,7 +10,7 @@ public interface CustomerDAO
 
 	public List<Customer> getCustomers();
 	public Customer getCustomerById(int id);
-	public Customer createCustomer(Customer customer);
+	public Customer createCustomer(String firstName, String lastName, String userName, String passWord);
 	public Customer updateCustomer(Customer customer);
 	public void deleteCustomer(Customer customer);
 	public List<Customer> getAll();
